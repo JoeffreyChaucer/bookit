@@ -10,7 +10,7 @@
     "seeder": "node utils/seeder"
   },
   "dependencies": {
-    "mongoose": "^6.0.9",
+    "mongoose": "5.13.12",
     "next": "11.1.2",
     "next-connect": "^0.10.2",
     "react": "17.0.2",
