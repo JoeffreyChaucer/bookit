@@ -28,7 +28,7 @@ const Search = () => {
           <form className="shadow-lg" onSubmit={submitHandler}>
             <h2 className="mb-3">Search Rooms</h2>
             <div className="form-group">
-              <label for="location_field">Location</label>
+              <label htmlFor="location_field">Location</label>
               <input
                 type="text"
                 className="form-control"
@@ -56,7 +56,7 @@ const Search = () => {
             </div>
 
             <div class="form-group">
-              <label for="room_type_field">Room Type</label>
+              <label htmlFor="room_type_field">Room Type</label>
               <select
                 class="form-control"
                 id="room_type_field"
