@@ -44,7 +44,7 @@ export const registerUser = (userData) => async (dispatch) => {
 };
 
 // Load user action
-export const loadUser = () => async (dispatch) => {
+export const loadedUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 

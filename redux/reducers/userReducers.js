@@ -2,9 +2,9 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
+  LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
-  LOAD_USER_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_RESET,
@@ -25,21 +25,11 @@ export const authReducer = (state = { user: null }, action) => {
       return {
         loading: true,
       };
-    case LOAD_USER_REQUEST:
-      return {
-        loading: true,
-        isAuthenticated: false,
-      };
+
     case REGISTER_USER_SUCCESS:
       return {
         loading: false,
         success: true,
-      };
-    case LOAD_USER_SUCCESS:
-      return {
-        loading: false,
-        isAuthenticated: true,
-        user: action.payload,
       };
 
     case REGISTER_USER_FAIL:
@@ -47,17 +37,50 @@ export const authReducer = (state = { user: null }, action) => {
         loading: false,
         error: action.payload,
       };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+// Load user reducer
+export const loadedUserReducer = (
+  state = { loading: true, user: null },
+  action
+) => {
+  switch (action.type) {
+    case LOAD_USER_REQUEST:
+      return {
+        loading: true,
+        isAuthenticated: false,
+      };
+
+    case LOAD_USER_SUCCESS:
+      return {
+        loading: false,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+
     case LOAD_USER_FAIL:
       return {
         loading: false,
         isAuthenticated: false,
         error: action.payload,
       };
+
     case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
       };
+
     default:
       return state;
   }
