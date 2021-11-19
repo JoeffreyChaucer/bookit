@@ -19,6 +19,7 @@ import {
   getBookedDates,
 } from '../../redux/actions/bookingActions';
 import { CHECK_BOOKING_RESET } from '../../redux/constants/bookingConstants';
+import getStripe from '../../utils/getStripe';
 
 import axios from 'axios';
 
@@ -65,34 +66,6 @@ const RoomDetails = () => {
   };
 
   const { id } = router.query;
-
-  const newBookingHandler = async () => {
-    const bookingData = {
-      room: router.query.id,
-      checkInDate,
-      checkOutDate,
-      daysOfStay,
-      amountPaid: 90,
-      paymentInfo: {
-        id: 'STRIPE_PAYMENT_ID',
-        status: 'STRIPE_PAYMENT_STATUS',
-      },
-    };
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-
-      const { data } = await axios.post('/api/bookings', bookingData, config);
-
-      console.log(data);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
 
   const bookRoom = async (id, pricePerNight) => {
     setPaymentLoading(true);
@@ -215,7 +188,8 @@ const RoomDetails = () => {
               {available && user && (
                 <button
                   className='btn btn-block py-3 booking-btn'
-                  onClick={newBookingHandler}
+                  onClick={() => bookRoom(room._id, room.pricePerNight)}
+                  disabled={bookingLoading || paymentLoading ? true : false}
                 >
                   Pay - ${daysOfStay * room.pricePerNight}
                 </button>

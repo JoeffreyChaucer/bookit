@@ -61,20 +61,20 @@ const MyBookings = () => {
           checkOut: new Date(booking.checkOutDate).toLocaleString('en-US'),
           amount: `$${booking.amountPaid}`,
           actions: (
-            <>
+            <div className='text-center'>
               <Link href={`/bookings/${booking._id}`}>
-                <a className='btn btn-primary'>
+                <a className='btn btn-primary my-1'>
                   <i className='fa fa-eye'></i>
                 </a>
               </Link>
 
               <button
-                className='btn btn-success mx-2'
+                className='btn btn-success  my-1 mx-2'
                 onClick={() => downloadInvoice(booking)}
               >
                 <i className='fa fa-download'></i>
               </button>
-            </>
+            </div>
           ),
         });
       });
@@ -106,7 +106,7 @@ const MyBookings = () => {
         city: `Check In: ${new Date(booking.checkInDate).toLocaleString(
           'en-US'
         )}`,
-        country: `Check In: ${new Date(booking.checkOutDate).toLocaleString(
+        country: `Check Out: ${new Date(booking.checkOutDate).toLocaleString(
           'en-US'
         )}`,
       },

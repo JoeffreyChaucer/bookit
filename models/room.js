@@ -3,32 +3,31 @@ const mongoose = require('mongoose');
 const roomSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please enter room name.'],
+    required: [true, 'Please enter room name'],
     trim: true,
-    maxLength: [100, 'Room name cannot exceed 100 characters.'],
+    maxLength: [100, 'Room name cannot exceed 100 characters'],
   },
   pricePerNight: {
     type: Number,
-    required: [true, 'Please enter room price.'],
-    maxLength: [4, 'Room name cannot exceed 4 characters.'],
+    required: [true, 'Please enter room price per night'],
+    maxLength: [4, 'Room name cannot exceed 4 characters'],
     default: 0.0,
   },
-
   description: {
     type: String,
-    required: [true, 'Please enter room description.'],
+    required: [true, 'Please enter room description'],
   },
   address: {
     type: String,
-    required: [true, 'Please enter room address.'],
+    required: [true, 'Please enter room address'],
   },
   guestCapacity: {
     type: Number,
-    required: [true, 'Please enter room guest capacity.'],
+    required: [true, 'Please enter room guest capacity'],
   },
   numOfBeds: {
     type: Number,
-    required: [true, 'Please enter room bed number.'],
+    required: [true, 'Please enter number of beds in room'],
   },
   internet: {
     type: Boolean,
@@ -72,10 +71,10 @@ const roomSchema = new mongoose.Schema({
   ],
   category: {
     type: String,
-    required: [true, 'Please select room category.'],
+    required: [true, 'Please enter room category'],
     enum: {
       values: ['King', 'Single', 'Twins'],
-      message: 'Please select correct category for room.',
+      message: 'Please select correct category for room',
     },
   },
   reviews: [
@@ -106,7 +105,7 @@ const roomSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 

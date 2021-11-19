@@ -13,7 +13,6 @@ import {
   bookedDatesReducer,
   bookingsReducer,
   bookingDetailsReducer,
-  bookingReducer,
 } from './bookingReducers';
 const reducers = combineReducers({
   allRooms: allRoomsReducer,
