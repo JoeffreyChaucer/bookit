@@ -18,12 +18,10 @@ const BookingDetails = () => {
       toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, booking]);
+  }, [dispatch]);
 
   const isPaid =
     booking.paymentInfo && booking.paymentInfo.status === 'paid' ? true : false;
-
-  console.log(booking);
 
   return (
     <div className='container'>

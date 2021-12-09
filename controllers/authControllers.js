@@ -168,10 +168,75 @@ const resetPassword = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// Get all Users   =>   /api/admin/users
+const allAdminUsers = catchAsyncErrors(async (req, res) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+// Get user Details => /api/admin/users/:id
+const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.query.id);
+
+  if (!user) {
+    return next(new ErrorHandler('User not found with this id', 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Delete User => /api/admin/users/:id
+const deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.query.id);
+
+  if (!user) {
+    return next(new ErrorHandler('User not found with this id', 404));
+  }
+
+  const image_id = user.avatar.public_id;
+  await cloudinary.v2.uploader.destroy(image_id);
+
+  await user.remove();
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Update user Details => /api/admin/users/:id
+const updateUser = catchAsyncErrors(async (req, res) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+  const user = await User.findByIdAndUpdate(req.query.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
 export {
   registerUser,
   currentUserProfile,
   updateProfile,
   forgotPassword,
   resetPassword,
+  allAdminUsers,
+  getUserDetails,
+  updateUser,
+  deleteUser,
 };
