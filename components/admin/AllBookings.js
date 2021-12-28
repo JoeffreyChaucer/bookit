@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { MDBDataTable } from 'mdbreact';
 import easyinvoice from 'easyinvoice';
@@ -14,15 +15,12 @@ import {
   deleteBooking,
   clearErrors,
 } from '../../redux/actions/bookingActions';
-
 import { DELETE_BOOKING_RESET } from '../../redux/constants/bookingConstants';
-
-import { useRouter } from 'next/router';
 
 const AllBookings = () => {
   const dispatch = useDispatch();
-
   const router = useRouter();
+
   const { bookings, error, loading } = useSelector((state) => state.bookings);
   const { isDeleted, error: deleteError } = useSelector(
     (state) => state.booking
@@ -30,10 +28,12 @@ const AllBookings = () => {
 
   useEffect(() => {
     dispatch(getAdminBookings());
+
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
     }
+
     if (deleteError) {
       toast.error(deleteError);
       dispatch(clearErrors());
@@ -43,7 +43,7 @@ const AllBookings = () => {
       router.push('/admin/bookings');
       dispatch({ type: DELETE_BOOKING_RESET });
     }
-  }, [dispatch, error, deleteError, isDeleted]);
+  }, [dispatch, deleteError, isDeleted]);
 
   const setBookings = () => {
     const data = {
@@ -85,27 +85,27 @@ const AllBookings = () => {
           checkOut: new Date(booking.checkOutDate).toLocaleString('en-US'),
           amount: `$${booking.amountPaid}`,
           actions: (
-            <div className='text-center'>
-              <Link href={`/admins/bookings/${booking._id}`}>
-                <a className='btn btn-primary my-1'>
+            <>
+              <Link href={`/admin/bookings/${booking._id}`}>
+                <a className='btn btn-primary'>
                   <i className='fa fa-eye'></i>
                 </a>
               </Link>
 
               <button
-                className='btn btn-success  my-1 mx-2'
+                className='btn btn-success mx-2'
                 onClick={() => downloadInvoice(booking)}
               >
                 <i className='fa fa-download'></i>
               </button>
 
               <button
-                className='btn btn-danger  my-1 mx-2'
+                className='btn btn-danger mx-2'
                 onClick={() => deleteBookingHandler(booking._id)}
               >
                 <i className='fa fa-trash'></i>
               </button>
-            </div>
+            </>
           ),
         });
       });
@@ -141,7 +141,7 @@ const AllBookings = () => {
         city: `Check In: ${new Date(booking.checkInDate).toLocaleString(
           'en-US'
         )}`,
-        country: `Check Out: ${new Date(booking.checkOutDate).toLocaleString(
+        country: `Check In: ${new Date(booking.checkOutDate).toLocaleString(
           'en-US'
         )}`,
       },
@@ -170,6 +170,7 @@ const AllBookings = () => {
       ) : (
         <>
           <h1 className='my-5'>{`${bookings && bookings.length} Bookings`}</h1>
+
           <MDBDataTable
             data={setBookings()}
             className='px-3'

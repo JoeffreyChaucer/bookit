@@ -14,7 +14,29 @@ class APIFeatures {
         }
       : {};
 
-    this.query = this.query.find({ ...location });
+    const guests = this.queryStr.guests
+      ? {
+          guestCapacity: {
+            $regex: this.queryStr.guests,
+            $options: 'i',
+          },
+        }
+      : {};
+
+    const category = this.queryStr.category
+      ? {
+          category: {
+            $regex: this.queryStr.category,
+            $options: 'i',
+          },
+        }
+      : {};
+
+    this.query = this.query.find({
+      ...location,
+      ...guests,
+      ...category,
+    });
 
     return this;
   }

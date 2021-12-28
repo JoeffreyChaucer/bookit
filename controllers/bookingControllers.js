@@ -5,7 +5,6 @@ import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import booking from '../models/booking';
 
 const moment = extendMoment(Moment);
 
@@ -83,15 +82,15 @@ const checkBookedDatesOfRoom = catchAsyncErrors(async (req, res) => {
 
   let bookedDates = [];
 
-  const timeDifference = moment().utcOffset() / 60;
+  const timeDiffernece = moment().utcOffset() / 60;
 
   bookings.forEach((booking) => {
     const checkInDate = moment(booking.checkInDate).add(
-      timeDifference,
+      timeDiffernece,
       'hours'
     );
     const checkOutDate = moment(booking.checkOutDate).add(
-      timeDifference,
+      timeDiffernece,
       'hours'
     );
 
@@ -143,8 +142,6 @@ const getBookingDetails = catchAsyncErrors(async (req, res) => {
   });
 });
 
-// ADMIN
-
 // Get all bookings - ADMIN   =>   /api/admin/bookings
 const allAdminBookings = catchAsyncErrors(async (req, res) => {
   const bookings = await Booking.find()
@@ -163,12 +160,12 @@ const allAdminBookings = catchAsyncErrors(async (req, res) => {
   });
 });
 
-// Delete bookings - ADMIN   =>   /api/admin/bookings/:id
+// Delete booking - ADMIN   =>   /api/admin/bookings/id
 const deleteBooking = catchAsyncErrors(async (req, res, next) => {
   const booking = await Booking.findById(req.query.id);
 
   if (!booking) {
-    return next(new ErrorHandler('Booking not found  with this ID', 404));
+    return next(new ErrorHandler('Booking not found with this ID', 400));
   }
 
   await booking.remove();

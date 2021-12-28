@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+
 import { MDBDataTable } from 'mdbreact';
-import Loader from '../layout/Loader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -18,7 +17,7 @@ const RoomReviews = () => {
   const [roomId, setRoomId] = useState('');
 
   const dispatch = useDispatch();
-  const router = useRouter();
+
   const { error, reviews } = useSelector((state) => state.roomReviews);
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.review

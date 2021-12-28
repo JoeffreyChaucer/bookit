@@ -20,8 +20,8 @@ import {
   getBookedDates,
 } from '../../redux/actions/bookingActions';
 import { CHECK_BOOKING_RESET } from '../../redux/constants/bookingConstants';
-import getStripe from '../../utils/getStripe';
 
+import getStripe from '../../utils/getStripe';
 import axios from 'axios';
 
 const RoomDetails = () => {
@@ -198,6 +198,7 @@ const RoomDetails = () => {
             </div>
           </div>
         </div>
+
         <NewReview />
 
         {room.reviews && room.reviews.length > 0 ? (
