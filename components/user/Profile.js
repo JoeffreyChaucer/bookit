@@ -8,6 +8,7 @@ import Loader from '../layout/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile, clearErrors } from '../../redux/actions/userActions';
 import { UPDATE_PROFILE_RESET } from '../../redux/constants/userConstants';
+import Image from 'next/image';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Profile = () => {
       router.push('/');
       dispatch({ type: UPDATE_PROFILE_RESET });
     }
-  }, [dispatch, isUpdated, error, loadedUser]);
+  }, [dispatch, isUpdated, error, loadedUser, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -134,11 +135,16 @@ const Profile = () => {
                   <label htmlFor='avatar_upload'>Avatar</label>
                   <div className='d-flex align-items-center'>
                     <div>
-                      <figure className='avatar mr-3 item-rtl'>
-                        <img
+                      <figure
+                        className='avatar mr-3 item-rtl'
+                        style={{ position: 'relative' }}
+                      >
+                        <Image
                           src={avatarPreview}
                           className='rounded-circle'
                           alt='image'
+                          layout='fill'
+                          objectFit='contain'
                         />
                       </figure>
                     </div>

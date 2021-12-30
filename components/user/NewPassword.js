@@ -6,6 +6,7 @@ import ButtonLoader from '../layout/ButtonLoader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword, clearErrors } from '../../redux/actions/userActions';
+import { route } from 'next/dist/server/router';
 
 const NewPassword = () => {
   const [password, setPassword] = useState('');
@@ -27,7 +28,7 @@ const NewPassword = () => {
     if (success) {
       router.push('/login');
     }
-  }, [dispatch, error, success]);
+  }, [dispatch, error, success, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();

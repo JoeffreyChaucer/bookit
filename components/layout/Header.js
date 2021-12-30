@@ -43,11 +43,16 @@ const Header = () => {
                 aria-haspopup='true'
                 aria-expanded='false'
               >
-                <figure className='avatar avatar-nav'>
-                  <img
+                <figure
+                  className='avatar avatar-nav'
+                  style={{ position: 'relative' }}
+                >
+                  <Image
                     src={user.avatar && user.avatar.url}
                     alt={user && user.name}
                     className='rounded-circle'
+                    layout='fill'
+                    objectFit='contain'
                   />
                 </figure>
                 <span>{user && user.name}</span>

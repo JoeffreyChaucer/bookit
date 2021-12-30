@@ -39,7 +39,7 @@ const NewReview = () => {
 
       router.push(`/room/${id}`);
     }
-  }, [dispatch, success, error, id]);
+  }, [dispatch, success, error, id, router]);
 
   const submitHandler = () => {
     const reviewData = {

@@ -39,7 +39,7 @@ const AllUsers = () => {
       router.push('/admin/users');
       dispatch({ type: DELETE_USER_RESET });
     }
-  }, [dispatch, error, deleteError, isDeleted]);
+  }, [dispatch, error, deleteError, isDeleted, router]);
 
   const deleteUserHandler = (id) => {
     dispatch(deleteUser(id));

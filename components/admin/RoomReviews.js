@@ -44,7 +44,7 @@ const RoomReviews = () => {
       dispatch({ type: DELETE_REVIEW_RESET });
     }
     return () => clearTimeout(delayDebounceFn);
-  }, [dispatch, roomId, deleteError, isDeleted]);
+  }, [dispatch, roomId, deleteError, isDeleted, error]);
 
   const deleteReviewHandler = (id) => {
     dispatch(deleteReview(id, roomId));

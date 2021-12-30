@@ -52,7 +52,7 @@ const RoomDetails = () => {
     setCheckOutDate(checkOutDate);
 
     if (checkInDate && checkOutDate) {
-      // Calclate days of stay
+      // Calculate days of stay
 
       const days = Math.floor(
         (new Date(checkOutDate) - new Date(checkInDate)) / 86400000 + 1
@@ -100,7 +100,7 @@ const RoomDetails = () => {
     return () => {
       dispatch({ type: CHECK_BOOKING_RESET });
     };
-  }, [dispatch, id]);
+  }, [dispatch, id, error]);
 
   return (
     <>

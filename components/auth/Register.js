@@ -1,41 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-import { toast } from "react-toastify";
-import ButtonLoader from "../layout/ButtonLoader";
+import { toast } from 'react-toastify';
+import ButtonLoader from '../layout/ButtonLoader';
+import Image from 'next/image';
 
-import { useDispatch, useSelector } from "react-redux";
-import { registerUser, clearErrors } from "../../redux/actions/userActions";
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser, clearErrors } from '../../redux/actions/userActions';
 
 const Register = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState('');
   const [avatarPreview, setAvatarPreview] = useState(
-    "/images/default_avatar.jpg"
+    '/images/default_avatar.jpg'
   );
 
   const { success, error, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (success) {
-      router.push("/login");
+      router.push('/login');
     }
 
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, success, error]);
+  }, [dispatch, success, error, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -51,7 +52,7 @@ const Register = () => {
   };
 
   const onChange = (e) => {
-    if (e.target.name === "avatar") {
+    if (e.target.name === 'avatar') {
       const reader = new FileReader();
 
       reader.onload = () => {
@@ -68,70 +69,74 @@ const Register = () => {
   };
 
   return (
-    <div className="container container-fluid">
-      <div className="row wrapper">
-        <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler}>
-            <h1 className="mb-3">Join Us</h1>
+    <div className='container container-fluid'>
+      <div className='row wrapper'>
+        <div className='col-10 col-lg-5'>
+          <form className='shadow-lg' onSubmit={submitHandler}>
+            <h1 className='mb-3'>Join Us</h1>
 
-            <div className="form-group">
-              <label htmlFor="name_field">Full Name</label>
+            <div className='form-group'>
+              <label htmlFor='name_field'>Full Name</label>
               <input
-                type="text"
-                id="name_field"
-                className="form-control"
-                name="name"
+                type='text'
+                id='name_field'
+                className='form-control'
+                name='name'
                 value={name}
                 onChange={onChange}
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email_field">Email</label>
+            <div className='form-group'>
+              <label htmlFor='email_field'>Email</label>
               <input
-                type="email"
-                id="email_field"
-                className="form-control"
-                name="email"
+                type='email'
+                id='email_field'
+                className='form-control'
+                name='email'
                 value={email}
                 onChange={onChange}
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password_field">Password</label>
+            <div className='form-group'>
+              <label htmlFor='password_field'>Password</label>
               <input
-                type="password"
-                id="password_field"
-                className="form-control"
-                name="password"
+                type='password'
+                id='password_field'
+                className='form-control'
+                name='password'
                 value={password}
                 onChange={onChange}
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="avatar_upload">Avatar</label>
-              <div className="d-flex align-items-center">
+            <div className='form-group'>
+              <label htmlFor='avatar_upload'>Avatar</label>
+              <div className='d-flex align-items-center'>
                 <div>
-                  <figure className="avatar mr-3 item-rtl">
-                    <img
+                  <figure
+                    className='avatar mr-3 item-rtl'
+                    style={{ position: 'relative' }}
+                  >
+                    <Image
                       src={avatarPreview}
-                      className="rounded-circle"
-                      alt="image"
+                      className='rounded-circle'
+                      alt='image'
+                      lay
                     />
                   </figure>
                 </div>
-                <div className="custom-file">
+                <div className='custom-file'>
                   <input
-                    type="file"
-                    name="avatar"
-                    className="custom-file-input"
-                    id="customFile"
-                    accept="images/*"
+                    type='file'
+                    name='avatar'
+                    className='custom-file-input'
+                    id='customFile'
+                    accept='images/*'
                     onChange={onChange}
                   />
-                  <label className="custom-file-label" htmlFor="customFile">
+                  <label className='custom-file-label' htmlFor='customFile'>
                     Choose Avatar
                   </label>
                 </div>
@@ -139,12 +144,12 @@ const Register = () => {
             </div>
 
             <button
-              id="login_button"
-              type="submit"
-              className="btn btn-block py-3"
+              id='login_button'
+              type='submit'
+              className='btn btn-block py-3'
               disabled={loading ? true : false}
             >
-              {loading ? <ButtonLoader /> : "REGISTER"}
+              {loading ? <ButtonLoader /> : 'REGISTER'}
             </button>
           </form>
         </div>

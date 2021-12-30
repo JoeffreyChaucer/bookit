@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-
+import Image from 'next/image';
 import ButtonLoader from '../layout/ButtonLoader';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,7 +41,7 @@ const NewRoom = () => {
       router.push('/admin/rooms');
       dispatch({ type: NEW_ROOM_RESET });
     }
-  }, [dispatch, error, success]);
+  }, [dispatch, error, success, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -277,7 +277,7 @@ const NewRoom = () => {
               </div>
 
               {imagesPreview.map((img) => (
-                <img
+                <Image
                   src={img}
                   key={img}
                   alt='Images Preview'

@@ -56,7 +56,7 @@ const Search = () => {
             <div className='form-group'>
               <label htmlFor='guest_field'>No. of Guests</label>
               <select
-                class='form-control'
+                className='form-control'
                 id='guest_field'
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
@@ -72,7 +72,7 @@ const Search = () => {
             <div className='form-group'>
               <label htmlFor='room_type_field'>Room Type</label>
               <select
-                class='form-control'
+                className='form-control'
                 id='room_type_field'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}

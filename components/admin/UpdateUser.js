@@ -44,7 +44,7 @@ const UpdateUser = () => {
       router.push('/admin/users');
       dispatch({ type: UPDATE_USER_RESET });
     }
-  }, [dispatch, isUpdated, userId, user, error]);
+  }, [dispatch, isUpdated, userId, user, error, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();

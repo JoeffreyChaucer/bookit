@@ -20,11 +20,6 @@ class MyDocument extends Document {
             type='text/css'
             href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
           />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-
           <script
             src='https://code.jquery.com/jquery-3.5.1.slim.min.js'
             integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj'
@@ -40,6 +35,10 @@ class MyDocument extends Document {
             integrity='sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s'
             crossOrigin='anonymous'
           ></script>
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );

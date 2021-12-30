@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     toast.error(error);
     dispatch(clearErrors());
-  }, []);
+  }, [dispatch, error]);
 
   const handlePagination = (pageNumber) => {
     window.location.href = `/?page=${pageNumber}`;
