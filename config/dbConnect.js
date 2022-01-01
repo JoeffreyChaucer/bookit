@@ -5,7 +5,12 @@ const dbConnect = () => {
     return;
   }
 
-  mongoose.connect(process.env.DB_URI);
+  mongoose.connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  });
 };
 
 export default dbConnect;

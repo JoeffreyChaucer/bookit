@@ -70,19 +70,13 @@ const RoomDetails = () => {
 
   const bookRoom = async (id, pricePerNight) => {
     setPaymentLoading(true);
-
     const amount = pricePerNight * daysOfStay;
-
     try {
       const link = `/api/checkout_session/${id}?checkInDate=${checkInDate.toISOString()}&checkOutDate=${checkOutDate.toISOString()}&daysOfStay=${daysOfStay}`;
-
       const { data } = await axios.get(link, { params: { amount } });
-
       const stripe = await getStripe();
-
       // Redirect to checkout
       stripe.redirectToCheckout({ sessionId: data.id });
-
       setPaymentLoading(false);
     } catch (error) {
       setPaymentLoading(false);
@@ -122,15 +116,22 @@ const RoomDetails = () => {
           <span id='no_of_reviews'>({room.numOfReviews} Reviews)</span>
         </div>
 
-        <Carousel hover='pause'>
+        <Carousel variant='dark' hover='pause' nextLabel='' prevLabel=''>
           {room.images &&
             room.images.map((image) => (
               <Carousel.Item key={image.public_id}>
-                <div style={{ width: '100%', height: '440px' }}>
+                <div
+                  style={{
+                    width: '100%',
+                    height: '440px',
+                    position: 'relative',
+                  }}
+                >
                   <Image
                     className='d-block m-auto'
                     src={image.url}
                     alt={room.name}
+                    objectFit='cover'
                     layout='fill'
                   />
                 </div>

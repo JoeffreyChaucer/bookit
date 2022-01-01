@@ -27,7 +27,13 @@ const Header = () => {
           <div className='navbar-brand' style={{ cursor: 'pointer' }}>
             <Link href='/'>
               <a>
-                <Image src={logo} alt='BookIT' width={145} height='' />
+                <Image
+                  src={logo}
+                  alt='BookIT'
+                  width={145}
+                  height={43}
+                  layout='fixed'
+                />
               </a>
             </Link>
           </div>
@@ -35,24 +41,25 @@ const Header = () => {
 
         <div className='col-3 mt-3 mt-md-0 text-center'>
           {user ? (
-            <div className='ml-4 dropdown d-line'>
+            <div className='ml-4 dropdown d-line '>
               <a
-                className='btn dropdown-toggle mr-4'
+                className='btn dropdown-toggle mr-4 d-flex align-items-center'
                 id='dropDownMenuButton'
                 data-toggle='dropdown'
                 aria-haspopup='true'
                 aria-expanded='false'
               >
                 <figure
-                  className='avatar avatar-nav'
+                  className='avatar avatar-nav '
                   style={{ position: 'relative' }}
                 >
                   <Image
                     src={user.avatar && user.avatar.url}
                     alt={user && user.name}
                     className='rounded-circle'
-                    layout='fill'
-                    objectFit='contain'
+                    layout='fixed'
+                    height={35}
+                    width={35}
                   />
                 </figure>
                 <span>{user && user.name}</span>
@@ -60,7 +67,7 @@ const Header = () => {
 
               <div
                 className='dropdown-menu'
-                aria-labelledby='dropDownMenuButton'
+                aria-labelledy='dropDownMenuButton'
               >
                 {user.role === 'admin' && (
                   <>
