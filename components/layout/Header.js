@@ -67,7 +67,7 @@ const Header = () => {
 
               <div
                 className='dropdown-menu'
-                aria-labelledy='dropDownMenuButton'
+                aria-labelledby='dropDownMenuButton'
               >
                 {user.role === 'admin' && (
                   <>
