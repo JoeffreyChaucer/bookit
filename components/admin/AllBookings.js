@@ -126,7 +126,9 @@ const AllBookings = () => {
       marginRight: 25,
       marginLeft: 25,
       marginBottom: 25,
-      logo: 'https://res.cloudinary.com/bookit/image/upload/v1617904918/bookit/bookit_logo_cbgjzv.png',
+      images: {
+        logo: 'https://res.cloudinary.com/bookit/image/upload/v1617904918/bookit/bookit_logo_cbgjzv.png',
+      },
       sender: {
         company: 'Book IT',
         address: '13th Street. 47 W 13th St',
@@ -137,21 +139,23 @@ const AllBookings = () => {
       client: {
         company: `${booking.user.name}`,
         address: `${booking.user.email}`,
-        zip: '',
         city: `Check In: ${new Date(booking.checkInDate).toLocaleString(
           'en-US'
         )}`,
-        country: `Check In: ${new Date(booking.checkOutDate).toLocaleString(
+        country: `Check Out: ${new Date(booking.checkOutDate).toLocaleString(
           'en-US'
         )}`,
       },
-      invoiceNumber: `${booking._id}`,
-      invoiceDate: `${new Date(Date.now()).toLocaleString('en-US')}`,
+
+      information: {
+        number: `${booking._id}`,
+        date: `${new Date(Date.now()).toLocaleString('en-US')}`,
+      },
       products: [
         {
           quantity: `${booking.daysOfStay}`,
           description: `${booking.room.name}`,
-          tax: 0,
+          'tax-rate': 6,
           price: booking.room.pricePerNight,
         },
       ],
@@ -162,7 +166,6 @@ const AllBookings = () => {
     const result = await easyinvoice.createInvoice(data);
     easyinvoice.download(`invoice_${booking._id}.pdf`, result.pdf);
   };
-
   return (
     <div className='container container-fluid'>
       {loading ? (

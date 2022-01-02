@@ -91,7 +91,9 @@ const MyBookings = () => {
       marginRight: 25,
       marginLeft: 25,
       marginBottom: 25,
-      logo: 'https://res.cloudinary.com/bookit/image/upload/v1617904918/bookit/bookit_logo_cbgjzv.png',
+      images: {
+        logo: 'https://res.cloudinary.com/bookit/image/upload/v1617904918/bookit/bookit_logo_cbgjzv.png',
+      },
       sender: {
         company: 'Book IT',
         address: '13th Street. 47 W 13th St',
@@ -102,21 +104,24 @@ const MyBookings = () => {
       client: {
         company: `${booking.user.name}`,
         address: `${booking.user.email}`,
-        zip: '',
         city: `Check In: ${new Date(booking.checkInDate).toLocaleString(
           'en-US'
         )}`,
-        country: `Check In: ${new Date(booking.checkOutDate).toLocaleString(
+        country: `Check Out: ${new Date(booking.checkOutDate).toLocaleString(
           'en-US'
         )}`,
       },
-      invoiceNumber: `${booking._id}`,
-      invoiceDate: `${new Date(Date.now()).toLocaleString('en-US')}`,
+
+      information: {
+        number: `${booking._id}`,
+        date: `${new Date(Date.now()).toLocaleString('en-US')}`,
+        'due-date': `${new Date(booking.checkOutDate).toLocaleString('en-US')}`,
+      },
       products: [
         {
           quantity: `${booking.daysOfStay}`,
           description: `${booking.room.name}`,
-          tax: 0,
+          'tax-rate': 6,
           price: booking.room.pricePerNight,
         },
       ],
