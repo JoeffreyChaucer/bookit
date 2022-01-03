@@ -8,6 +8,7 @@ import {
   isAuthenticatedUser,
   authorizeRoles,
 } from '../../../../middlewares/auth';
+
 const handler = nc({ onError });
 
 dbConnect();

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import ButtonLoader from '../layout/ButtonLoader';
@@ -62,7 +62,7 @@ const NewRoom = () => {
       images,
     };
 
-    if (images.length === 0) return toast.error('Please upload image.');
+    if (images.length === 0) return toast.error('Please upload images.');
 
     dispatch(newRoom(roomData));
   };
@@ -83,9 +83,10 @@ const NewRoom = () => {
         }
       };
 
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     });
   };
+
   return (
     <div className='container container-fluid'>
       <div className='row wrapper'>
@@ -174,7 +175,7 @@ const NewRoom = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='category_field'>Number of Beds</label>
+              <label htmlFor='numofbeds_field'>Number of Beds</label>
               <select
                 className='form-control'
                 id='numofbeds_field'
@@ -284,6 +285,7 @@ const NewRoom = () => {
                   className='mt-3 mr-2'
                   width='55'
                   height='52'
+                  priority
                 />
               ))}
             </div>
