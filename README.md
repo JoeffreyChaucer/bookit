@@ -2,7 +2,7 @@
 
 ![BookIt](/public/images/hotelbookit.PNG 'BookIt')
 
-### HERE [VIEW LIVE DEMO](https://hotelbookit-flame.vercel.app/)
+### HERE [VIEW LIVE DEMO](https://hotelbookit-one.vercel.app/)
 
 ## Demo Admin Account
 
